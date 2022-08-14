@@ -141,6 +141,9 @@ public class LinkedList
                 if (node == _nodeAfter) {
                     _nodeToInsert.next = node.next;
                     node.next = _nodeToInsert;
+                    if (_nodeToInsert.next == null) {
+                        tail = _nodeToInsert;
+                    }
                     return;
                 }
                 node = node.next;
