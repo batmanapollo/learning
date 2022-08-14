@@ -127,18 +127,21 @@ public class LinkedList
     {
         Node node = head;
         if (_nodeAfter == null) {
-            if (head == null) {
-                head = _nodeToInsert;
+            head = _nodeToInsert;
+            if (node == null) {
                 tail = _nodeToInsert;
+                tail.next = null;
             } else {
-                head = _nodeToInsert;
                 head.next = node;
+                node.next = null;
+                tail = node;
             }
         } else {
             while (node != null) {
                 if (node == _nodeAfter) {
                     _nodeToInsert.next = node.next;
                     node.next = _nodeToInsert;
+                    return;
                 }
                 node = node.next;
             }
@@ -157,4 +160,3 @@ class Node
         next = null;
     }
 }
-
