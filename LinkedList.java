@@ -127,16 +127,21 @@ public class LinkedList
     {
         Node node = head;
         if (_nodeAfter == null) {
-            head = _nodeToInsert;
-            head.next = node;
-        }
-
-        while (node != null) {
-            if (node == _nodeAfter) {
-                _nodeToInsert.next = node.next;
-                node.next = _nodeToInsert;
+            if (head == null) {
+                head = _nodeToInsert;
+                tail = _nodeToInsert;
+            } else {
+                head = _nodeToInsert;
+                head.next = node;
             }
-            node = node.next;
+        } else {
+            while (node != null) {
+                if (node == _nodeAfter) {
+                    _nodeToInsert.next = node.next;
+                    node.next = _nodeToInsert;
+                }
+                node = node.next;
+            }
         }
     }
 
@@ -152,3 +157,4 @@ class Node
         next = null;
     }
 }
+
