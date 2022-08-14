@@ -47,12 +47,13 @@ public class LinkedList
             return false;
         }
 
-        if (node.next == null) {
-            if (node.value == _value) {
+        if (node.value == _value) {
+            if (node.next == null) {
                 clear();
-                return true;
+            } else {
+                head = node.next;
             }
-            return false;
+            return true;
         }
 
         Node nextNode = node.next;
@@ -61,9 +62,11 @@ public class LinkedList
                 node.next = nextNode.next;
                 if (node.next == null) {
                     tail = node;
+                    tail.next = null;
                 }
                 return true;
             }
+            node = nextNode;
             nextNode = nextNode.next;
         }
 
@@ -72,27 +75,35 @@ public class LinkedList
 
     public void removeAll(int _value)
     {
-        Node node = this.head;
-        if (node == null) {
+        Node newHeadNode = findNextNotEqual(this.head, _value);
+        if (newHeadNode == null) {
+            clear();
             return;
+        } else {
+            head = newHeadNode;
         }
 
-        if (node.next == null) {
-            if (node.value == _value) {
-                clear();
-            }
+        Node lastNode = head;
+        Node node = findNextNotEqual(lastNode.next, _value);
+        while (node != null) {
+            lastNode.next = node;
+            lastNode = node;
+            node = findNextNotEqual(lastNode.next, _value);
         }
 
-        Node nextNode = node.next;
-        while (nextNode != null) {
-            if (nextNode.value == _value) {
-                node.next = nextNode.next;
-                if (node.next == null) {
-                    tail = node;
-                }
+        tail = lastNode;
+        tail.next = null;
+    }
+
+    private Node findNextNotEqual(Node node, int _value) {
+        while (node != null) {
+            if (node.value != _value) {
+                return node;
             }
-            nextNode = nextNode.next;
+            node = node.next;
         }
+
+        return null;
     }
 
     public void clear()
