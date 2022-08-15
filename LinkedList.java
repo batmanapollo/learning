@@ -1,35 +1,42 @@
 import java.util.*;
 
-public class LinkedList
+public class LinkedList2
 {
     public Node head;
     public Node tail;
 
-    public LinkedList()
+    public LinkedList2()
     {
         head = null;
         tail = null;
     }
 
-    public void addInTail(Node item) {
-        if (this.head == null)
-            this.head = item;
-        else
-            this.tail.next = item;
-        this.tail = item;
+    public void addInTail(Node _item)
+    {
+        if (head == null) {
+            this.head = _item;
+            this.head.next = null;
+            this.head.prev = null;
+        } else {
+            this.tail.next = _item;
+            _item.prev = tail;
+        }
+        this.tail = _item;
     }
 
-    public Node find(int value) {
+    public Node find(int _value)
+    {
         Node node = this.head;
         while (node != null) {
-            if (node.value == value)
+            if (node.value == _value)
                 return node;
             node = node.next;
         }
         return null;
     }
 
-    public ArrayList<Node> findAll(int _value) {
+    public ArrayList<Node> findAll(int _value)
+    {
         ArrayList<Node> nodes = new ArrayList<Node>();
         Node node = this.head;
         while (node != null) {
@@ -52,6 +59,7 @@ public class LinkedList
                 clear();
             } else {
                 head = node.next;
+                head.prev = null;
             }
             return true;
         }
@@ -63,6 +71,8 @@ public class LinkedList
                 if (node.next == null) {
                     tail = node;
                     tail.next = null;
+                } else {
+                    node.next.prev = node;
                 }
                 return true;
             }
@@ -81,12 +91,14 @@ public class LinkedList
             return;
         } else {
             head = newHeadNode;
+            head.prev = null;
         }
 
         Node lastNode = head;
         Node node = findNextNotEqual(lastNode.next, _value);
         while (node != null) {
             lastNode.next = node;
+            node.prev = lastNode;
             lastNode = node;
             node = findNextNotEqual(lastNode.next, _value);
         }
@@ -130,10 +142,10 @@ public class LinkedList
             head = _nodeToInsert;
             if (node == null) {
                 tail = _nodeToInsert;
-                tail.next = null;
             } else {
                 head.next = node;
                 node.next = null;
+                node.prev = _nodeToInsert;
                 tail = node;
             }
         } else {
@@ -143,23 +155,28 @@ public class LinkedList
                     node.next = _nodeToInsert;
                     if (_nodeToInsert.next == null) {
                         tail = _nodeToInsert;
+                    } else {
+                        _nodeToInsert.next.prev = _nodeToInsert;
                     }
                     return;
                 }
                 node = node.next;
             }
         }
-    }
 
+    }
 }
 
 class Node
 {
     public int value;
     public Node next;
+    public Node prev;
+
     public Node(int _value)
     {
         value = _value;
         next = null;
+        prev = null;
     }
 }
