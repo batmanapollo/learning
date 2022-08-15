@@ -137,10 +137,34 @@ public class LinkedList2
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert)
     {
-        // здесь будет ваш код вставки узла после заданного узла
+        Node node = head;
+        if (_nodeAfter == null) {
+            head = _nodeToInsert;
+            if (node == null) {
+                tail = _nodeToInsert;
+            } else {
+                head.next = node;
+                node.next = null;
+                node.prev = _nodeToInsert;
+                tail = node;
+            }
+        } else {
+            while (node != null) {
+                if (node == _nodeAfter) {
+                    _nodeToInsert.next = node.next;
+                    node.next = _nodeToInsert;
+                    _nodeToInsert.prev = node;
+                    if (_nodeToInsert.next == null) {
+                        tail = _nodeToInsert;
+                    } else {
+                        _nodeToInsert.next.prev = _nodeToInsert;
+                    }
+                    return;
+                }
+                node = node.next;
+            }
+        }
 
-        // если _nodeAfter = null
-        // добавьте новый элемент первым в списке
     }
 }
 
