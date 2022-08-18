@@ -32,7 +32,9 @@ public class DynArray<T>
 
     public T getItem(int index)
     {
-        checkIndex(index);
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException();
+        }
         return array[index];
     }
 
@@ -49,7 +51,13 @@ public class DynArray<T>
 
     public void insert(T itm, int index)
     {
-        checkIndex(index);
+        if (index < 0 || index > count) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index == count) {
+            append(itm);
+            return;
+        }
         if (count == capacity) {
             var newCapacity = capacity * 2;
             makeArray(newCapacity);
@@ -63,22 +71,18 @@ public class DynArray<T>
 
     public void remove(int index)
     {
-        checkIndex(index);
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException();
+        }
         for (int i = index; i < count; i++) {
             array[i] = array[i + 1];
         }
 
         count--;
 
-        if (count >= 16 && capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
+        if (count >= MIN_CAPACITY && capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
             var newCapacity = capacity / 1.5;
             makeArray((int) newCapacity);
-        }
-    }
-
-    private void checkIndex(int index) {
-        if (index < 0 || index >= count) {
-            throw new IndexOutOfBoundsException();
         }
     }
 
