@@ -1,7 +1,7 @@
 public class DynArray<T>
 {
 
-    private static final int MIN_CAPACITY = 16;
+    private static final int MIN_CAPACITY = 2;
     private static final int MIN_FULLNESS_PERCENTAGE = 50;
 
     public T [] array;
@@ -22,7 +22,7 @@ public class DynArray<T>
     {
         var tmp = (T[]) Array.newInstance(this.clazz, new_capacity);
         if (array != null) {
-            for (int i = 0; i < capacity; i++) {
+            for (int i = 0; i < count; i++) {
                 tmp[i] = array[i];
             }
         }
@@ -74,13 +74,14 @@ public class DynArray<T>
         if (index < 0 || index >= count) {
             throw new IndexOutOfBoundsException();
         }
-        for (int i = index; i < count; i++) {
+        for (int i = index; i < count - 1; i++) {
             array[i] = array[i + 1];
         }
+        array[count - 1] = null;
 
         count--;
 
-        if (count >= MIN_CAPACITY && capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
+        if (count >= MIN_CAPACITY && (double) capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
             var newCapacity = capacity / 1.5;
             makeArray((int) newCapacity);
         }
