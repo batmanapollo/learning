@@ -1,7 +1,7 @@
 public class DynArray<T>
 {
 
-    private static final int MIN_CAPACITY = 2;
+    private static final int MIN_CAPACITY = 16;
     private static final int MIN_FULLNESS_PERCENTAGE = 50;
 
     public T [] array;
