@@ -62,7 +62,7 @@ public class DynArray<T>
             var newCapacity = capacity * 2;
             makeArray(newCapacity);
         }
-        for (int i = count + 1; i > index; i--) {
+        for (int i = count; i > index; i--) {
             array[i] = array[i - 1];
         }
         array[index] = itm;
@@ -81,8 +81,11 @@ public class DynArray<T>
 
         count--;
 
-        if (count >= MIN_CAPACITY && (double) capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
+        if ((double) capacity / count > (100 / MIN_FULLNESS_PERCENTAGE)) {
             var newCapacity = capacity / 1.5;
+            if (newCapacity < MIN_CAPACITY) {
+                newCapacity = MIN_CAPACITY;
+            }
             makeArray((int) newCapacity);
         }
     }
