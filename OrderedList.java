@@ -30,9 +30,19 @@ public class OrderedList<T>
 
     public int compare(T v1, T v2)
     {
-        var value1 = (Integer) v1;
-        var value2 = (Integer) v2;
-        var comparingResult = compare2(value1, value2);
+        int comparingResult;
+        if (v1 instanceof Integer) {
+            var value1 = (Integer) v1;
+            var value2 = (Integer) v2;
+            comparingResult = compare2(value1, value2);
+        } else if (v1 instanceof String) {
+            var value1 = (String) v1;
+            var value2 = (String) v2;
+            comparingResult = value1.compareTo(value2);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+
         if (_ascending) {
             return comparingResult * -1;
         }
@@ -163,4 +173,3 @@ public class OrderedList<T>
         return r;
     }
 }
-
