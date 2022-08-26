@@ -36,7 +36,7 @@ public class HashTable
     public int put(String value)
     {
         var slot = seekSlot(value);
-        if (slot > 0) {
+        if (slot >= 0) {
             slots[slot] = value;
             return slot;
         }
