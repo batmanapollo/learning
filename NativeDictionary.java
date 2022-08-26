@@ -3,6 +3,7 @@ import java.lang.reflect.Array;
 class NativeDictionary<T>
 {
     public int size;
+    public final int step = 3;
     public String [] slots;
     public T [] values;
 
@@ -24,13 +25,28 @@ class NativeDictionary<T>
         return index >= 0;
     }
 
+    public int seekSlot(String value)
+    {
+        int count = 0;
+        for (int i = hashFun(value); count < size;) {
+            if (slots[i] == null) {
+                return i;
+            }
+
+            i = i + step;
+            if (i >= size) i = i - size;
+            count++;
+        }
+
+        return -1;
+    }
+
     public void put(String key, T value)
     {
-        for (int i = 0; i < size; i++) {
-            if (slots[i].equals(key) || slots[i] == null) {
-                slots[i] = key;
-                values[i] = value;
-            }
+        var slot = seekSlot(key);
+        if (slot > 0) {
+            slots[slot] = key;
+            values[slot] = value;
         }
     }
 
@@ -44,11 +60,17 @@ class NativeDictionary<T>
     }
 
     private int getIndex(String key) {
-        for (int i = 0; i < size; i++) {
+        int count = 0;
+        for (int i = hashFun(key); count < size;) {
             if (slots[i] == key) {
                 return i;
             }
+
+            i = i + step;
+            if (i >= size) i = i - size;
+            count++;
         }
+
         return -1;
     }
 
