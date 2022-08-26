@@ -27,7 +27,7 @@ class NativeDictionary<T>
     public void put(String key, T value)
     {
         for (int i = 0; i < size; i++) {
-            if (slots[i] == null) {
+            if (slots[i].equals(key) || slots[i] == null) {
                 slots[i] = key;
                 values[i] = value;
             }
