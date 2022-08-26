@@ -40,7 +40,7 @@ public class PowerSet
             }
 
             i = i + step;
-            if (i >= size) i = i - size;
+            if (i >= slotsSize) i = i - slotsSize;
             count++;
         }
 
