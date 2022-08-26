@@ -26,7 +26,7 @@ public class HashTable
             }
 
             i = i + step;
-            if (i > size) i = i - size;
+            if (i >= size) i = i - size;
             count++;
         }
 
