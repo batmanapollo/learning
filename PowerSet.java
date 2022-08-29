@@ -64,13 +64,28 @@ public class PowerSet
 
     public boolean remove(String value)
     {
-        int slot = seekSlot(value);
+        int slot = getIndex(value);
         if (slot >= 0 && slots[slot] != null) {
             slots[slot] = null;
             size--;
             return true;
         }
         return false;
+    }
+
+    private int getIndex(String key) {
+        int count = 0;
+        for (int i = hashFun(key); count < size;) {
+            if (key.equals(slots[i])) {
+                return i;
+            }
+
+            i = i + step;
+            if (i >= size) i = i - size;
+            count++;
+        }
+
+        return -1;
     }
 
     public PowerSet intersection(PowerSet set2)
