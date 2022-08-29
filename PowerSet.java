@@ -59,13 +59,13 @@ public class PowerSet
     public boolean get(String value)
     {
         int slot = seekSlot(value);
-        return slots[slot] != null;
+        return slot >= 0 &&  slots[slot] != null;
     }
 
     public boolean remove(String value)
     {
         int slot = seekSlot(value);
-        if (slots[slot] != null) {
+        if (slot >= 0 && slots[slot] != null) {
             slots[slot] = null;
             size--;
             return true;
