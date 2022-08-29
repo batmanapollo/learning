@@ -50,7 +50,7 @@ public class PowerSet
     public void put(String value)
     {
         int slot = seekSlot(value);
-        if (slot > 0 && slots[slot] == null) {
+        if (slot >= 0 && slots[slot] == null) {
             slots[slot] = value;
             size++;
         }
