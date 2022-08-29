@@ -75,13 +75,13 @@ public class PowerSet
 
     private int getIndex(String key) {
         int count = 0;
-        for (int i = hashFun(key); count < size;) {
+        for (int i = hashFun(key); count < slotsSize;) {
             if (key.equals(slots[i])) {
                 return i;
             }
 
             i = i + step;
-            if (i >= size) i = i - size;
+            if (i >= slotsSize) i = i - slotsSize;
             count++;
         }
 
