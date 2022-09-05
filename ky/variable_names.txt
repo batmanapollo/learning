@@ -1,0 +1,36 @@
+description - desktopDescription (desktop_description)
+mobileDescription - mobileDescription (mobile_description)
+// различное описание для десктопа и мобильного веба
+
+i - extensionStartedIndex (extension_started_index)
+// индекс символа в строке после которого начинается расширение файла
+
+image - bufferedImage (buffered_image)
+// изображение с буфером
+
+fileSize - fileSizeBytes (file_size_bytes)
+// размер файла в байтах
+
+dest - outputFile (output_file)
+// файл, в который будет скопировано содержимое
+
+color - colorHex (color_hex)
+// цвет в шестнадцатеричной системе счисления
+
+trimmed - trimmedValue (trimmed_value)
+// значение без пробелов в начале и в конце
+
+dLatInKm - distanceLatitudeKm (distance_latitude_km)
+// расстояние по широте
+
+page - currentPage (current_page)
+// текущая страница в пейджинге
+
+limit - searchLimit (search_limit)
+// лимит выдачи в поиске
+
+sec - jobStartDelaySec (job_start_delay_sec)
+// задержка перед запуском джобы
+
+str - sanitizedMessage (sanitized_message)
+// сообщение после удаления запрещенных символов
