@@ -1,0 +1,23 @@
+6.1
+phoneNumber - messageSubtitle
+allowedCharactersPattern - regexPattern
+fiasUid - locationUid
+userId - addressOwnerId
+imageValidationErrors - errors
+
+6.2
+rpcCallError
+imageUrl
+jwtToken
+
+6.3
+imageUploadResponse
+userId
+phoneValidationResult
+
+6.4
+fileStorageFileUploadResponse - fileUploadResponse
+sellerContractChannels - contactChannels
+shouldSkipBlankValidation - needBlankValidation
+sb - stringBuilder
+ch - character
