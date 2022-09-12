@@ -1,0 +1,21 @@
+7.1
+isNotBookCategory - isBookCategory
+oversize - isOversize
+fromCatalog - isFromCatalog
+hasNotDictionary - hasDictionary
+deliveryAvailability - isDeliveryAvailable
+
+7.2
+isSuccess - success
+hasError - error
+
+7.3
+i - charPosition 
+
+7.4
+-
+
+7.5
+response - photoServiceResponse
+users - newUsers
+
