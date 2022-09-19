@@ -1,0 +1,12 @@
+toTitle - getTitle
+toAddressSection - mapToAddressSection
+checkTitleLength - validateTitleLength
+getImagesCount - getAllImagesCount 
+isEmptyRequest - isEmpty
+clearErrors - removeCmsErrors
+getPhoneCallPermission - isPhoneCallAllowed
+getByLocation - getCoordinates
+getCategoryList - getCategories
+meterToKm - convertToKm
+kmToMeterRounded - convertTo
+index - getIndex
