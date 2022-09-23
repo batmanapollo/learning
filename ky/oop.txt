@@ -1,0 +1,9 @@
+3.1
+AddressDetails.fromTimezonAndLocation();
+AddressKey.fromUserAndAddressId();
+Coordinates.fromLatLong();
+
+3.2
+Repository
+Widget
+JobExecutor
