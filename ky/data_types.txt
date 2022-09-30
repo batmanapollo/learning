@@ -1,0 +1,5 @@
+По первым четырем пунктам нечего улучшить. По пятому пункту могу привести один пример: 
+if (uploadFileResponse.isNew() && photoService.isPhotoExist(photoUrl)) { ... }
+изменено на:
+boolean isDuplicate = uploadFileResponse.isNew() && photoService.isPhotoExist(photoUrl);
+if (isDuplicate) { ... }
