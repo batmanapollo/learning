@@ -1,0 +1,24 @@
+3.1
+// добавить расширение, если его нет
+if (hasWrongOrEmptyExtension(photo.getName()) && hasAllowedMimeType(photo)) {
+
+// кол-во фото может быть только одно, не поддерживаем множественную загрузку
+if (contract.getFilesCount() != EXPECTED_PHOTO_COUNT) {
+
+// если сохрание успешно и мы в режиме редактирования
+if (response.isSuccess() && Boolean.parseBoolean(contract.getIsEditFlow())) {
+
+// если поиск категорий, обновить ид
+if (contract.isCategorySearch()) {
+
+// если черновик на модерации
+if (service.isInModeration(key)) {
+
+// если описательной категории нет, запросить
+if (Objects.isNull(requestCategories.getDescCategoryId())) {
+
+// если нет главного фото, обновить его
+if (listingDraft.getDefaultImage() == null) {
+
+3.2
+Мы не используем комментарии, поэтому убирать нечего
