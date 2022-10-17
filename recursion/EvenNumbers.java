@@ -1,4 +1,4 @@
-package com.company;
+package recursion;
 
 import java.util.List;
 
@@ -13,8 +13,7 @@ public class EvenNumbers {
             return;
         }
         var number = numbers.get(index);
-        var shouldPrintNumber = number % 2 == 0;
-        if (shouldPrintNumber) {
+        if (number % 2 == 0) {
             System.out.println(number);
         }
         printEvenNumbers(numbers, index + 1);
