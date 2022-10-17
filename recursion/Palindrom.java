@@ -1,4 +1,4 @@
-package com.company;
+package recursion;
 
 public class Palindrom {
 
@@ -7,7 +7,11 @@ public class Palindrom {
             return true;
         }
 
-        return source.charAt(0) == source.charAt(source.length() - 1) && isPalindrom(source.substring(1, source.length() - 1));
+        if (source.charAt(0) != source.charAt(source.length() - 1)) {
+            return false;
+        }
+
+        return isPalindrom(source.substring(1, source.length() - 1));
     }
 
 }
