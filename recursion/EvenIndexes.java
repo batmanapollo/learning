@@ -1,4 +1,4 @@
-package com.company;
+package recursion;
 
 import java.util.List;
 
@@ -14,8 +14,7 @@ public class EvenIndexes {
         if (list.size() == 0 || index >= list.size()) {
             return;
         }
-        var element = list.get(index);
-        System.out.println(element);
+        System.out.println(list.get(index));
         if (list.size() > MIN_LIST_SIZE) {
             printElementsWithEvenIndex(list, index + 2);
         }
