@@ -9,7 +9,7 @@ public class EvenNumbers {
     }
 
     private void printEvenNumbers(List<Integer> numbers, int index) {
-        if (numbers.size() == 0 || index == numbers.size()) {
+        if (index == numbers.size()) {
             return;
         }
         var number = numbers.get(index);
