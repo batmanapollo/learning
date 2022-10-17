@@ -7,10 +7,10 @@ public class SecondMaxNumberFinder {
     public int find(List<Integer> numbers) {
         int first = numbers.get(0);
         int second = numbers.get(1);
-        if (first > second) {
-            return find(numbers, 0, first, second);
+        if (first >= second) {
+            return find(numbers, 2, first, second);
         } else {
-            return find(numbers, 0, second, first);
+            return find(numbers, 2, second, first);
         }
     }
 
@@ -20,10 +20,10 @@ public class SecondMaxNumberFinder {
         }
 
         var number = numbers.get(index);
-        if (number > max) {
+        if (number >= max) {
             secondMax = max;
             max = number;
-        } else if (number < max && number > secondMax) {
+        } else if (number > secondMax) {
             secondMax = number;
         }
 
