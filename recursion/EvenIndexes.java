@@ -11,7 +11,7 @@ public class EvenIndexes {
     }
 
     private void printElementsWithEvenIndex(List<Integer> list, int index) {
-        if (list.size() == 0 || index >= list.size()) {
+        if (index >= list.size()) {
             return;
         }
         System.out.println(list.get(index));
