@@ -106,6 +106,8 @@ class SimpleTree<T>
 
     public int LeafCount()
     {
-        return GetAllNodes().size();
+        return (int) GetAllNodes().stream()
+                .filter(node -> node.Children == null ||  node.Children.size() == 0)
+                .count();
     }
 }
