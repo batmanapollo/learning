@@ -65,7 +65,7 @@ class SimpleTree<T>
     }
 
     private void addAllChildren(List<SimpleTreeNode<T>> acc, SimpleTreeNode<T> node) {
-        acc.addAll(node.Children);
+        acc.add(node);
         for (SimpleTreeNode<T> child : node.Children) {
             addAllChildren(acc, child);
         }
