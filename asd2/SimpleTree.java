@@ -28,6 +28,9 @@ class SimpleTree<T>
         if (ParentNode == null) {
             Root = NewChild;
         } else {
+            if (ParentNode.Children == null) {
+                ParentNode.Children = new ArrayList<>();
+            }
             ParentNode.Children.add(NewChild);
             NewChild.Parent = ParentNode;
         }
@@ -43,16 +46,20 @@ class SimpleTree<T>
     }
 
     private boolean delete(SimpleTreeNode<T> node, SimpleTreeNode<T> NodeToDelete) {
-        if (NodeToDelete.equals(node)) {
-            NodeToDelete.Parent.Children.remove(node);
-            NodeToDelete.Parent = null;
-            return true;
+        if (NodeToDelete.equals(node) && NodeToDelete.Parent.Children != null) {
+            var deleted = NodeToDelete.Parent.Children.remove(node);
+            if (deleted) {
+                NodeToDelete.Parent = null;
+            }
+            return deleted;
         }
 
-        for (SimpleTreeNode<T> child : node.Children) {
-            var deleted = delete(child, NodeToDelete);
-            if (deleted) {
-                return true;
+        if (node.Children != null) {
+            for (SimpleTreeNode<T> child : node.Children) {
+                var deleted = delete(child, NodeToDelete);
+                if (deleted) {
+                    return true;
+                }
             }
         }
 
@@ -73,8 +80,10 @@ class SimpleTree<T>
 
     private void addAllChildren(List<SimpleTreeNode<T>> acc, SimpleTreeNode<T> node) {
         acc.add(node);
-        for (SimpleTreeNode<T> child : node.Children) {
-            addAllChildren(acc, child);
+        if (node.Children != null) {
+            for (SimpleTreeNode<T> child : node.Children) {
+                addAllChildren(acc, child);
+            }
         }
     }
 
@@ -94,8 +103,10 @@ class SimpleTree<T>
         if (val.equals(node.NodeValue)) {
             acc.add(node);
         }
-        for (SimpleTreeNode<T> child : node.Children) {
-            addAllChildrenByValue(acc, child, val);
+        if (node.Children != null) {
+            for (SimpleTreeNode<T> child : node.Children) {
+                addAllChildrenByValue(acc, child, val);
+            }
         }
     }
 
@@ -103,6 +114,9 @@ class SimpleTree<T>
     {
         OriginalNode.Parent = NewParent;
         delete(OriginalNode.Parent, OriginalNode);
+        if (NewParent.Children == null) {
+            NewParent.Children = new ArrayList<>();
+        }
         NewParent.Children.add(OriginalNode);
     }
 
