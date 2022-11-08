@@ -25,20 +25,27 @@ class SimpleTree<T>
 
     public void AddChild(SimpleTreeNode<T> ParentNode, SimpleTreeNode<T> NewChild)
     {
-        ParentNode.Children.add(NewChild);
-        NewChild.Parent = ParentNode;
+        if (ParentNode == null) {
+            Root = NewChild;
+        } else {
+            ParentNode.Children.add(NewChild);
+            NewChild.Parent = ParentNode;
+        }
     }
 
     public void DeleteNode(SimpleTreeNode<T> NodeToDelete)
     {
-        if (Root != null) {
+        if (NodeToDelete.equals(Root)) {
+            Root = null;
+        } else if (Root != null) {
             delete(Root, NodeToDelete);
         }
     }
 
     private boolean delete(SimpleTreeNode<T> node, SimpleTreeNode<T> NodeToDelete) {
         if (NodeToDelete.equals(node)) {
-            node.Parent.Children.remove(node);
+            NodeToDelete.Parent.Children.remove(node);
+            NodeToDelete.Parent = null;
             return true;
         }
 
@@ -78,17 +85,17 @@ class SimpleTree<T>
         }
 
         var result = new ArrayList<SimpleTreeNode<T>>();
-        addAllChildren2(result, Root, val);
+        addAllChildrenByValue(result, Root, val);
 
         return result;
     }
 
-    private void addAllChildren2(List<SimpleTreeNode<T>> acc, SimpleTreeNode<T> node, T val) {
+    private void addAllChildrenByValue(List<SimpleTreeNode<T>> acc, SimpleTreeNode<T> node, T val) {
         if (val.equals(node.NodeValue)) {
             acc.add(node);
         }
         for (SimpleTreeNode<T> child : node.Children) {
-            addAllChildren2(acc, child, val);
+            addAllChildrenByValue(acc, child, val);
         }
     }
 
@@ -106,8 +113,18 @@ class SimpleTree<T>
 
     public int LeafCount()
     {
-        return (int) GetAllNodes().stream()
-                .filter(node -> node.Children == null ||  node.Children.size() == 0)
-                .count();
+        if (Root == null) {
+            return 0;
+        }
+
+        return countLeafs(Root);
+    }
+
+    private Integer countLeafs(SimpleTreeNode<T> node) {
+        if (node.Children == null || node.Children.size() == 0) {
+            return 1;
+        }
+
+        return node.Children.stream().map(this::countLeafs).reduce(0, Integer::sum);
     }
 }
