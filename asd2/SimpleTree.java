@@ -112,12 +112,8 @@ class SimpleTree<T>
 
     public void MoveNode(SimpleTreeNode<T> OriginalNode, SimpleTreeNode<T> NewParent)
     {
-        OriginalNode.Parent = NewParent;
         delete(OriginalNode.Parent, OriginalNode);
-        if (NewParent.Children == null) {
-            NewParent.Children = new ArrayList<>();
-        }
-        NewParent.Children.add(OriginalNode);
+        AddChild(NewParent, OriginalNode);
     }
 
     public int Count()
@@ -127,11 +123,7 @@ class SimpleTree<T>
 
     public int LeafCount()
     {
-        if (Root == null) {
-            return 0;
-        }
-
-        return countLeafs(Root);
+        return GetAllNodes().size();
     }
 
     private Integer countLeafs(SimpleTreeNode<T> node) {
