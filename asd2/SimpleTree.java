@@ -123,7 +123,11 @@ class SimpleTree<T>
 
     public int LeafCount()
     {
-        return GetAllNodes().size();
+        if (Root == null) {
+            return 0;
+        }
+        
+        return countLeafs(Root);
     }
 
     private Integer countLeafs(SimpleTreeNode<T> node) {
